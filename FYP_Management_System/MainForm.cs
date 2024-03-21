@@ -16,5 +16,43 @@ namespace FYP_Management_System
         {
             InitializeComponent();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            StudentCRUD studentCRUD = new StudentCRUD();
+            studentCRUD.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AdvisorCRUD advisorCRUD = new AdvisorCRUD();
+            advisorCRUD.Show();
+            this.Hide();
+        }
+        private bool closingConfirmed = false;
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!closingConfirmed)
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to close the application?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    closingConfirmed = true;
+                    Application.Exit();
+                }
+            }
+        }
     }
 }

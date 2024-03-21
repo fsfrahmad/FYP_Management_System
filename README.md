@@ -7,7 +7,9 @@
 
 ```
 cd existing_repo
+git add .
 git remote add origin https://github.com/fsfrahmad/Private.git
+git commit -m "message"
 git branch -M master
 git push -uf origin master
 ```

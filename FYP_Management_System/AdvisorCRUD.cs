@@ -292,6 +292,17 @@ namespace FYP_Management_System
                     MessageBox.Show("No record found with this Id");
                     return;
                 }
+                // Check if the updated person record already exists
+                SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM Person WHERE Contact = @Contact AND Email = @Email ", con);
+                checkCmd.Parameters.AddWithValue("@Contact", txtContact.Text);
+                checkCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                object result1 = checkCmd.ExecuteScalar();
+                int existingRecordsCount = result1 != null ? (int)result1 : -1; // Replace -1 with appropriate default value
+                if (existingRecordsCount > 0)
+                {
+                    MessageBox.Show("This person already exists");
+                    return;
+                }
 
                 SqlCommand sqlCommand = new SqlCommand("UPDATE Person SET FirstName = @FirstName, LastName = @LastName, Contact = @Contact, Email = @Email, DateOfBirth = @DateOfBirth, Gender = @Gender WHERE Id = @Id", con);
                 sqlCommand.Parameters.AddWithValue("@Id", txtId.Text);
@@ -448,6 +459,14 @@ namespace FYP_Management_System
                 default:
                     return string.Empty;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainForm mainForm = new MainForm();
+            mainForm.Show();
+
         }
     }
 }

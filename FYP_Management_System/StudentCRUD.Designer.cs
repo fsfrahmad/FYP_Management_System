@@ -44,6 +44,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
             this.txtRegNo = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -203,6 +204,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.ClearButton);
             this.panel1.Controls.Add(this.txtRegNo);
             this.panel1.Controls.Add(this.label13);
@@ -237,6 +239,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1503, 838);
             this.panel1.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(564, 660);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(122, 36);
+            this.button1.TabIndex = 43;
+            this.button1.Text = "<< BACK";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ClearButton
             // 
@@ -481,5 +494,6 @@
         private System.Windows.Forms.TextBox txtRegNo;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.Button button1;
     }
 }

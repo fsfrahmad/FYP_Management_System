@@ -16,11 +16,7 @@ namespace FYP_Management_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new StudentCRUD());
-            //Application.Run(new AdvisorCRUD());
-            //Application.Run(new MainForm());
-            //Application.Run(new ProjectCRUD());
-            Application.Run(new EvaluationCRUD());
+            Application.Run(new MainForm());
 
         }
     }

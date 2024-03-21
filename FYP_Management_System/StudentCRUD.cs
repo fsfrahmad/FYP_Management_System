@@ -67,91 +67,113 @@ namespace FYP_Management_System
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (txtRegNo.Text == "" || txtFName.Text == "" || txtLName.Text == "" || txtContact.Text == "" || txtEmail.Text == "" || comboBox2.Text == "")
+            if (txtFName.Text == "" || txtLName.Text == "" || txtContact.Text == "" || txtEmail.Text == "" || txtRegNo.Text == "" || comboBox2.Text == "")
             {
                 MessageBox.Show("Please fill all the fields");
             }
+            else if (ContainsNumber(txtFName.Text))
+            {
+                MessageBox.Show("First name should not contain numbers");
+                return;
+            }
+            else if (ContainsNumber(txtLName.Text))
+            {
+                MessageBox.Show("Last name should not contain numbers");
+                return;
+            }
+            else if (ContainsAlphabet(txtContact.Text))
+            {
+                MessageBox.Show("Contact should not contain alphabets");
+                return;
+            }
+            else if(txtContact.Text.StartsWith("-"))
+            {
+                MessageBox.Show("Contact should not be -ve");
+            }
+            else if (!txtEmail.Text.EndsWith("@gmail.com", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Email should end with @gmail.com");
+                return;
+            }
             else
             {
-
                 var con = Configuration.getInstance().getConnection();
-                // Check if the Student record already exists
-                SqlCommand checkRegNoCmd = new SqlCommand("SELECT COUNT(*) FROM Student WHERE RegistrationNo = @RegistrationNo", con);
-                checkRegNoCmd.Parameters.AddWithValue("@RegistrationNo", txtRegNo.Text);
-                int existingRegNoCount = (int)checkRegNoCmd.ExecuteScalar();
-
-                if (existingRegNoCount > 0)
+                // Check if the Person already exists and is not a advisor
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Person WHERE Contact = @Contact AND Email = @Email", con);
+                cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
+                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                int exisngPersonCount = (int)cmd.ExecuteScalar();
+                // Check if Student with same Registration No already exists
+                SqlCommand cmd9 = new SqlCommand("SELECT COUNT(*) FROM Student WHERE RegistrationNo = @RegistrationNo", con);
+                cmd9.Parameters.AddWithValue("@RegistrationNo", txtRegNo.Text);
+                int existingStudentCount2 = (int)cmd9.ExecuteScalar();
+                if (existingStudentCount2 == 1)
                 {
-                    MessageBox.Show("Registration number already exists!");
+                    MessageBox.Show("Student already exists");
                     return;
                 }
-                // Check if the Person record already exists
-                SqlCommand checkCmd = new SqlCommand("SELECT COUNT(*) FROM Person WHERE FirstName = @FirstName AND LastName = @LastName AND Contact = @Contact AND Email = @Email AND DateOfBirth = @DateOfBirth AND Gender = @Gender", con);
-
-                checkCmd.Parameters.AddWithValue("@FirstName", txtFName.Text);
-                checkCmd.Parameters.AddWithValue("@LastName", txtLName.Text);
-                checkCmd.Parameters.AddWithValue("@Contact", txtContact.Text);
-                checkCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                checkCmd.Parameters.AddWithValue("@DateofBirth", dateTimePicker1.Text);
-                checkCmd.Parameters.AddWithValue("@Gender", comboBox2.Text == "Male" ? 1 : 2);
-                int existingRecordsCount = (int)checkCmd.ExecuteScalar();
-                if (existingRecordsCount > 0)
+                //Get Person Id if Record Already Exists and check based on that is not a Advisor
+                SqlCommand cmd2 = new SqlCommand("SELECT Id FROM Person WHERE Contact = @Contact AND Email = @Email", con);
+                cmd2.Parameters.AddWithValue("@Contact", txtContact.Text);
+                cmd2.Parameters.AddWithValue("@Email", txtEmail.Text);
+                object result = cmd2.ExecuteScalar();
+                int personId = result != null ? (int)result : -1; // Replace -1 with appropriate default value
+                if (exisngPersonCount == 1)
                 {
-                    MessageBox.Show("Record already exists!");
-                    return;
+                    SqlCommand cmd3 = new SqlCommand("SELECT COUNT(*) FROM Student WHERE Id = @Id", con);
+                    cmd3.Parameters.AddWithValue("@Id", personId);
+                    int existingStudentCount = (int)cmd3.ExecuteScalar();
+                    if (existingStudentCount == 1)
+                    {
+                        MessageBox.Show("Student already exists");
+                        return;
+                    }
+                    else
+                    {
+                        // Check if the person is a Advisor
+                        SqlCommand cmd4 = new SqlCommand("SELECT COUNT(*) FROM Advisor WHERE Id = @Id", con);
+                        cmd4.Parameters.AddWithValue("@Id", personId);
+                        int existingAdvisorCount = (int)cmd4.ExecuteScalar();
+                        if (existingAdvisorCount == 1)
+                        {
+                            MessageBox.Show("This person is a advisor and cannot be an student");
+                            return;
+                        }
+                        else
+                        {
+                            SqlCommand cmd5 = new SqlCommand("INSERT INTO Student(Id, RegistrationNo) VALUES(@Id, @RegistrationNo)", con);
+                            cmd5.Parameters.AddWithValue("@Id", personId);
+                            cmd5.Parameters.AddWithValue("@RegistrationNo", txtRegNo.Text);
+                            cmd5.ExecuteNonQuery();
+                            MessageBox.Show("Record Added Successfully");
+                            LoadStudentData();
+                        }
+                    }
                 }
-
                 else
                 {
-                    // Validation for FirstName: Should not contain numbers
-                    string firstName = txtFName.Text;
-                    if (ContainsNumber(firstName))
-                    {
-                        MessageBox.Show("First name should not contain numbers");
-                        return;
-                    }
-                    // Validation for LastName: Should not contain numbers
-                    string lastName = txtLName.Text;
-                    if (ContainsNumber(lastName))
-                    {
-                        MessageBox.Show("Last name should not contain numbers");
-                        return;
-                    }
+                    SqlCommand cmd6 = new SqlCommand("INSERT INTO Person(FirstName, LastName, Contact, Email, DateOfBirth, Gender) VALUES (@FirstName, @LastName, @Contact, @Email, @DateOfBirth, @Gender)", con);
+                    cmd6.Parameters.AddWithValue("@FirstName", txtFName.Text);
+                    cmd6.Parameters.AddWithValue("@LastName", txtLName.Text);
+                    cmd6.Parameters.AddWithValue("@Contact", txtContact.Text);
+                    cmd6.Parameters.AddWithValue("@Email", txtEmail.Text);
+                    cmd6.Parameters.AddWithValue("@DateOfBirth", dateTimePicker1.Text);
+                    cmd6.Parameters.AddWithValue("@Gender", comboBox2.Text == "Male" ? 1 : 2);
 
-                    // Validation for Contact: Should not contain alphabets
-                    string contact = txtContact.Text;
-                    if (ContainsAlphabet(contact))
-                    {
-                        MessageBox.Show("Contact should not contain alphabets");
-                        return;
-                    }
+                    cmd6.ExecuteNonQuery();
 
-                    // Validation for Email: Should end with @gmail.com
-                    string email = txtEmail.Text;
-                    if (!email.EndsWith("@gmail.com", StringComparison.OrdinalIgnoreCase))
-                    {
-                        MessageBox.Show("Email should end with @gmail.com");
-                        return;
-                    }
+                    SqlCommand cmd7 = new SqlCommand("SELECT Id FROM Person WHERE Contact = @Contact AND Email = @Email", con);
+                    cmd7.Parameters.AddWithValue("@Contact", txtContact.Text);
+                    cmd7.Parameters.AddWithValue("@Email", txtEmail.Text);
+                    object result2 = cmd7.ExecuteScalar();
+                    int personId2 = result2 != null ? (int)result2 : -1; // Replace -1 with appropriate default value
 
+                    // Check if Student with same Registration No already exists
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Person VALUES (@FirstName, @LastName, @Contact, @Email, @DateOfBirth, @Gender)", con);
-                    cmd.Parameters.AddWithValue("@FirstName", firstName);
-                    cmd.Parameters.AddWithValue("@LastName", lastName);
-                    cmd.Parameters.AddWithValue("@Contact", contact);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@DateofBirth", dateTimePicker1.Text);
-                    cmd.Parameters.AddWithValue("@Gender", comboBox2.Text == "Male" ? 1 : 2);
-                    cmd.ExecuteNonQuery();
-
-                    SqlCommand countCmd = new SqlCommand("SELECT COUNT(*) FROM Person", con);
-                    int PersonId = (int)countCmd.ExecuteScalar();
-
-
-                    SqlCommand cmd2 = new SqlCommand("INSERT INTO Student VALUES (@Id, @RegistrationNo)", con);
-                    cmd2.Parameters.AddWithValue("@Id", PersonId);
-                    cmd2.Parameters.AddWithValue("@RegistrationNo", txtRegNo.Text);
-                    cmd2.ExecuteNonQuery();
+                    SqlCommand cmd8 = new SqlCommand("INSERT INTO Student(Id, RegistrationNo) VALUES(@Id, @RegistrationNo)", con);
+                    cmd8.Parameters.AddWithValue("@Id", personId2);
+                    cmd8.Parameters.AddWithValue("@RegistrationNo", txtRegNo.Text);
+                    cmd8.ExecuteNonQuery();
                     MessageBox.Show("Record Added Successfully");
                     LoadStudentData();
                 }
@@ -189,49 +211,77 @@ namespace FYP_Management_System
             {
                 MessageBox.Show("Please select a record to update");
             }
-            else if (txtRegNo.Text == "" || txtFName.Text == "" || txtLName.Text == "" || txtContact.Text == "" || txtEmail.Text == "" || comboBox2.Text == "")
+            else if(txtFName.Text == "" || txtLName.Text == "" || txtContact.Text == "" || txtEmail.Text == "" || txtRegNo.Text == "" || comboBox2.Text == "")
             {
                 MessageBox.Show("Please fill all the fields");
             }
+            else if (ContainsNumber(txtFName.Text))
+            {
+                MessageBox.Show("First name should not contain numbers");
+                return;
+            }
+            else if (ContainsNumber(txtLName.Text))
+            {
+                MessageBox.Show("Last name should not contain numbers");
+                return;
+            }
+            else if (ContainsAlphabet(txtContact.Text))
+            {
+                MessageBox.Show("Contact should not contain alphabets");
+                return;
+            }
+            else if (txtContact.Text.StartsWith("-"))
+            {
+                MessageBox.Show("Contact should not be -ve");
+            }
+            else if (!txtEmail.Text.EndsWith("@gmail.com", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("Email should end with @gmail.com");
+                return;
+            }
             else
             {
-                if (ContainsNumber(txtFName.Text))
-                {
-                    MessageBox.Show("First name should not contain numbers");
-                    return;
-                }
-                if (ContainsNumber(txtLName.Text))
-                {
-                    MessageBox.Show("Last name should not contain numbers");
-                    return;
-                }
-                if (ContainsAlphabet(txtContact.Text))
-                {
-                    MessageBox.Show("Contact should not contain alphabets");
-                    return;
-                }
-                if (!txtEmail.Text.EndsWith("@gmail.com", StringComparison.OrdinalIgnoreCase))
-                {
-                    MessageBox.Show("Email should end with @gmail.com");
-                    return;
-                }
-
                 var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("UPDATE Person SET FirstName = @FirstName, LastName = @LastName, Contact = @Contact, Email = @Email, DateOfBirth= @DateOfBirth WHERE Id = @Id", con);
+                // Check if the updated data does not already exists in person table
+
+                SqlCommand cmd10 = new SqlCommand("SELECT COUNT(*) FROM Person WHERE Contact = @Contact AND Email = @Email AND Id != @Id", con);
+                cmd10.Parameters.AddWithValue("@Contact", txtContact.Text);
+                cmd10.Parameters.AddWithValue("@Email", txtEmail.Text);
+                cmd10.Parameters.AddWithValue("@Id", txtId.Text);
+                int exisngPersonCount = (int)cmd10.ExecuteScalar();
+                if (exisngPersonCount == 1)
+                {
+                    MessageBox.Show("Person already exists");
+                    return;
+                }
+                SqlCommand cmd = new SqlCommand("UPDATE Person SET FirstName = @FirstName, LastName = @LastName, Contact = @Contact, Email = @Email, DateOfBirth= @DateOfBirth, Gender = @Gender WHERE Id=@Id", con);
                 cmd.Parameters.AddWithValue("@Id", txtId.Text);
                 cmd.Parameters.AddWithValue("@FirstName", txtFName.Text);
                 cmd.Parameters.AddWithValue("@LastName", txtLName.Text);
                 cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@DateofBirth", dateTimePicker1.Text);
+                cmd.Parameters.AddWithValue("@DateOfBirth", dateTimePicker1.Text);
+                cmd.Parameters.AddWithValue("@Gender", comboBox2.Text == "Male" ? 1 : 2);
                 cmd.ExecuteNonQuery();
+                //Same for Student Table Check updated Record does not already exists
+                SqlCommand cmd11 = new SqlCommand("SELECT COUNT(*) FROM Student WHERE RegistrationNo = @RegistrationNo AND Id != @Id", con);
+                cmd11.Parameters.AddWithValue("@RegistrationNo", txtRegNo.Text);
+                cmd11.Parameters.AddWithValue("@Id", txtId.Text);
+                int existingStudentCount = (int)cmd11.ExecuteScalar();
+                if (existingStudentCount == 1)
+                {
+                    MessageBox.Show("Student already exists");
+                    return;
+                }
 
-                SqlCommand cmd2 = new SqlCommand("UPDATE Student SET RegistrationNo = @RegistrationNo WHERE Id = @Id", con);
+
+                SqlCommand cmd2 = new SqlCommand("UPDATE Student SET RegistrationNo = @RegistrationNo WHERE Id=@Id", con);
                 cmd2.Parameters.AddWithValue("@Id", txtId.Text);
                 cmd2.Parameters.AddWithValue("@RegistrationNo", txtRegNo.Text);
                 cmd2.ExecuteNonQuery();
-                MessageBox.Show("Record Updated Successfully");
                 LoadStudentData();
+                MessageBox.Show("Record Updated Successfully");
+                ClearData();
             }
         }
 
@@ -247,6 +297,9 @@ namespace FYP_Management_System
                 SqlCommand cmd = new SqlCommand("DELETE FROM Student WHERE Id = @Id", con);
                 cmd.Parameters.AddWithValue("@Id", txtId.Text);
                 cmd.ExecuteNonQuery();
+                LoadStudentData();
+                MessageBox.Show("Record Deleted Successfully");
+                ClearData();
             }
         }
 
@@ -275,7 +328,7 @@ namespace FYP_Management_System
 
                             cmd.CommandText += " WHERE S.Id = @value";
                         }
-                        else if(searchFilter == "Gender")
+                        else if (searchFilter == "Gender")
                         {
                             if (value == "Male")
                             {
@@ -325,6 +378,14 @@ namespace FYP_Management_System
                 default:
                     return string.Empty;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MainForm mainForm = new MainForm();
+            mainForm.Show();
+
         }
     }
 }
