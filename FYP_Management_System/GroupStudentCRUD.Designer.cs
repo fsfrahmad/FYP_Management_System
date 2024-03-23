@@ -28,36 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button1 = new System.Windows.Forms.Button();
             this.ClearButton = new System.Windows.Forms.Button();
-            this.txtRegNo = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.SearchButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.DeleteButton = new System.Windows.Forms.Button();
+            this.DeleteStudentButton = new System.Windows.Forms.Button();
+            this.AddIntoNewButton = new System.Windows.Forms.Button();
+            this.cbxGroup = new System.Windows.Forms.ComboBox();
+            this.cbxStatus = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.DeleteGroupButton = new System.Windows.Forms.Button();
             this.UpdateButton = new System.Windows.Forms.Button();
-            this.AddButton = new System.Windows.Forms.Button();
+            this.AddIntoExistingButton = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtFName = new System.Windows.Forms.TextBox();
-            this.txtContact = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.cbxSId = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -65,92 +59,34 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(564, 660);
+            this.button1.Location = new System.Drawing.Point(720, 588);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(122, 36);
             this.button1.TabIndex = 43;
             this.button1.Text = "<< BACK";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ClearButton
             // 
             this.ClearButton.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClearButton.Location = new System.Drawing.Point(564, 568);
+            this.ClearButton.Location = new System.Drawing.Point(564, 588);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(101, 36);
             this.ClearButton.TabIndex = 42;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
-            // 
-            // txtRegNo
-            // 
-            this.txtRegNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRegNo.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegNo.Location = new System.Drawing.Point(286, 148);
-            this.txtRegNo.Name = "txtRegNo";
-            this.txtRegNo.Size = new System.Drawing.Size(214, 37);
-            this.txtRegNo.TabIndex = 41;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(88, 154);
+            this.label13.Location = new System.Drawing.Point(88, 144);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(128, 31);
             this.label13.TabIndex = 40;
             this.label13.Text = "Student Id";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label12.Location = new System.Drawing.Point(93, 442);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(405, 26);
-            this.label12.TabIndex = 39;
-            this.label12.Text = "required only while updating and Deletion";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label11.Location = new System.Drawing.Point(93, 410);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(400, 26);
-            this.label11.TabIndex = 38;
-            this.label11.Text = "Note: Person Id is Autogenerated and It is";
-            // 
-            // txtId
-            // 
-            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtId.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtId.Location = new System.Drawing.Point(277, 481);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(212, 37);
-            this.txtId.TabIndex = 37;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(88, 483);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(117, 31);
-            this.label10.TabIndex = 36;
-            this.label10.Text = "Person Id";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(92, 354);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(139, 31);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "Created On";
             // 
             // label5
             // 
@@ -163,46 +99,16 @@
             this.label5.TabIndex = 27;
             this.label5.Text = "Group of Students";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Id",
-            "RegistrationNo",
-            "FullName",
-            "LastName",
-            "Contact",
-            "Email",
-            "DateOfBirth",
-            "Gender"});
-            this.comboBox1.Location = new System.Drawing.Point(201, 664);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(154, 33);
-            this.comboBox1.TabIndex = 26;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.DarkBlue;
-            this.label8.Location = new System.Drawing.Point(558, 607);
+            this.label8.Location = new System.Drawing.Point(88, 297);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(689, 31);
+            this.label8.Size = new System.Drawing.Size(406, 62);
             this.label8.TabIndex = 25;
-            this.label8.Text = "Note: Click on the Cell to Get its contents into the text boxes ";
-            // 
-            // SearchButton
-            // 
-            this.SearchButton.BackColor = System.Drawing.Color.Blue;
-            this.SearchButton.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.SearchButton.Location = new System.Drawing.Point(94, 664);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(101, 36);
-            this.SearchButton.TabIndex = 24;
-            this.SearchButton.Text = "Search";
-            this.SearchButton.UseVisualStyleBackColor = false;
+            this.label8.Text = "Group Id required while Adding Or \r\nUpdating into an existing group";
             // 
             // label7
             // 
@@ -217,29 +123,23 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.panel1.Controls.Add(this.dateTimePicker2);
+            this.panel1.Controls.Add(this.cbxSId);
+            this.panel1.Controls.Add(this.DeleteStudentButton);
+            this.panel1.Controls.Add(this.AddIntoNewButton);
+            this.panel1.Controls.Add(this.cbxGroup);
+            this.panel1.Controls.Add(this.cbxStatus);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.ClearButton);
-            this.panel1.Controls.Add(this.txtRegNo);
             this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.txtId);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.SearchButton);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.DeleteButton);
+            this.panel1.Controls.Add(this.DeleteGroupButton);
             this.panel1.Controls.Add(this.UpdateButton);
-            this.panel1.Controls.Add(this.AddButton);
+            this.panel1.Controls.Add(this.AddIntoExistingButton);
             this.panel1.Controls.Add(this.LoadButton);
             this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Controls.Add(this.txtFName);
-            this.panel1.Controls.Add(this.txtContact);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -249,103 +149,142 @@
             this.panel1.Size = new System.Drawing.Size(1544, 897);
             this.panel1.TabIndex = 4;
             // 
-            // DeleteButton
+            // DeleteStudentButton
             // 
-            this.DeleteButton.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteButton.Location = new System.Drawing.Point(237, 608);
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(101, 36);
-            this.DeleteButton.TabIndex = 22;
-            this.DeleteButton.Text = "Delete";
-            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteStudentButton.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteStudentButton.Location = new System.Drawing.Point(94, 644);
+            this.DeleteStudentButton.Name = "DeleteStudentButton";
+            this.DeleteStudentButton.Size = new System.Drawing.Size(400, 36);
+            this.DeleteStudentButton.TabIndex = 49;
+            this.DeleteStudentButton.Text = "Delete Student From Group";
+            this.DeleteStudentButton.UseVisualStyleBackColor = true;
+            // 
+            // AddIntoNewButton
+            // 
+            this.AddIntoNewButton.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddIntoNewButton.Location = new System.Drawing.Point(231, 505);
+            this.AddIntoNewButton.Name = "AddIntoNewButton";
+            this.AddIntoNewButton.Size = new System.Drawing.Size(263, 36);
+            this.AddIntoNewButton.TabIndex = 48;
+            this.AddIntoNewButton.Text = "Add Into New Group";
+            this.AddIntoNewButton.UseVisualStyleBackColor = true;
+            this.AddIntoNewButton.Click += new System.EventHandler(this.AddIntoNewButton_Click);
+            // 
+            // cbxGroup
+            // 
+            this.cbxGroup.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxGroup.FormattingEnabled = true;
+            this.cbxGroup.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.cbxGroup.Location = new System.Drawing.Point(282, 370);
+            this.cbxGroup.Name = "cbxGroup";
+            this.cbxGroup.Size = new System.Drawing.Size(212, 33);
+            this.cbxGroup.TabIndex = 47;
+            // 
+            // cbxStatus
+            // 
+            this.cbxStatus.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxStatus.FormattingEnabled = true;
+            this.cbxStatus.Items.AddRange(new object[] {
+            "Active",
+            "InActive"});
+            this.cbxStatus.Location = new System.Drawing.Point(282, 190);
+            this.cbxStatus.Name = "cbxStatus";
+            this.cbxStatus.Size = new System.Drawing.Size(212, 33);
+            this.cbxStatus.TabIndex = 46;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(282, 242);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(212, 33);
+            this.dateTimePicker1.TabIndex = 44;
+            // 
+            // DeleteGroupButton
+            // 
+            this.DeleteGroupButton.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteGroupButton.Location = new System.Drawing.Point(94, 505);
+            this.DeleteGroupButton.Name = "DeleteGroupButton";
+            this.DeleteGroupButton.Size = new System.Drawing.Size(101, 67);
+            this.DeleteGroupButton.TabIndex = 22;
+            this.DeleteGroupButton.Text = "Delete Group";
+            this.DeleteGroupButton.UseVisualStyleBackColor = true;
             // 
             // UpdateButton
             // 
             this.UpdateButton.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateButton.Location = new System.Drawing.Point(94, 608);
+            this.UpdateButton.Location = new System.Drawing.Point(94, 588);
             this.UpdateButton.Name = "UpdateButton";
-            this.UpdateButton.Size = new System.Drawing.Size(101, 36);
+            this.UpdateButton.Size = new System.Drawing.Size(400, 36);
             this.UpdateButton.TabIndex = 21;
-            this.UpdateButton.Text = "Update";
+            this.UpdateButton.Text = "Update Student\'s Group";
             this.UpdateButton.UseVisualStyleBackColor = true;
             // 
-            // AddButton
+            // AddIntoExistingButton
             // 
-            this.AddButton.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddButton.Location = new System.Drawing.Point(237, 554);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(101, 36);
-            this.AddButton.TabIndex = 20;
-            this.AddButton.Text = "Add";
-            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddIntoExistingButton.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddIntoExistingButton.Location = new System.Drawing.Point(231, 449);
+            this.AddIntoExistingButton.Name = "AddIntoExistingButton";
+            this.AddIntoExistingButton.Size = new System.Drawing.Size(263, 36);
+            this.AddIntoExistingButton.TabIndex = 20;
+            this.AddIntoExistingButton.Text = "Add Into Exissting Group";
+            this.AddIntoExistingButton.UseVisualStyleBackColor = true;
+            this.AddIntoExistingButton.Click += new System.EventHandler(this.AddIntoExistingButton_Click);
             // 
             // LoadButton
             // 
             this.LoadButton.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoadButton.Location = new System.Drawing.Point(94, 554);
+            this.LoadButton.Location = new System.Drawing.Point(94, 449);
             this.LoadButton.Name = "LoadButton";
             this.LoadButton.Size = new System.Drawing.Size(101, 36);
             this.LoadButton.TabIndex = 19;
             this.LoadButton.Text = "Load ";
             this.LoadButton.UseVisualStyleBackColor = true;
+            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.985075F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.985075F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.985075F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.985075F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView1.Location = new System.Drawing.Point(564, 144);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.985075F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.985075F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView1.RowHeadersWidth = 57;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(917, 406);
             this.dataGridView1.TabIndex = 18;
-            // 
-            // txtFName
-            // 
-            this.txtFName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtFName.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFName.Location = new System.Drawing.Point(286, 200);
-            this.txtFName.Name = "txtFName";
-            this.txtFName.Size = new System.Drawing.Size(212, 37);
-            this.txtFName.TabIndex = 17;
-            // 
-            // txtContact
-            // 
-            this.txtContact.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtContact.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContact.Location = new System.Drawing.Point(288, 301);
-            this.txtContact.Name = "txtContact";
-            this.txtContact.Size = new System.Drawing.Size(212, 37);
-            this.txtContact.TabIndex = 15;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(92, 303);
+            this.label4.Location = new System.Drawing.Point(88, 372);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(112, 31);
             this.label4.TabIndex = 9;
@@ -355,7 +294,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(92, 252);
+            this.label3.Location = new System.Drawing.Point(88, 242);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(198, 31);
             this.label3.TabIndex = 8;
@@ -365,30 +304,23 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(92, 202);
+            this.label2.Location = new System.Drawing.Point(88, 190);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 31);
             this.label2.TabIndex = 7;
             this.label2.Text = "Status";
             // 
-            // dateTimePicker1
+            // cbxSId
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(286, 252);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(212, 33);
-            this.dateTimePicker1.TabIndex = 44;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(288, 351);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(212, 33);
-            this.dateTimePicker2.TabIndex = 45;
+            this.cbxSId.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxSId.FormattingEnabled = true;
+            this.cbxSId.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.cbxSId.Location = new System.Drawing.Point(282, 142);
+            this.cbxSId.Name = "cbxSId";
+            this.cbxSId.Size = new System.Drawing.Size(212, 33);
+            this.cbxSId.TabIndex = 50;
             // 
             // GroupStudentCRUD
             // 
@@ -399,6 +331,7 @@
             this.Name = "GroupStudentCRUD";
             this.Text = "GroupStudentCRUD";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.GroupStudentCRUD_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -410,30 +343,24 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button ClearButton;
-        private System.Windows.Forms.TextBox txtRegNo;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button DeleteGroupButton;
         private System.Windows.Forms.Button UpdateButton;
-        private System.Windows.Forms.Button AddButton;
+        private System.Windows.Forms.Button AddIntoExistingButton;
         private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox txtFName;
-        private System.Windows.Forms.TextBox txtContact;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox cbxStatus;
+        private System.Windows.Forms.ComboBox cbxGroup;
+        private System.Windows.Forms.Button AddIntoNewButton;
+        private System.Windows.Forms.Button DeleteStudentButton;
+        private System.Windows.Forms.ComboBox cbxSId;
     }
 }

@@ -98,6 +98,7 @@ namespace FYP_Management_System
             else
             {
                 var con = Configuration.getInstance().getConnection();
+                
                 // Check if the Person already exists and is not a advisor
                 SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Person WHERE Contact = @Contact AND Email = @Email", con);
                 cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
@@ -177,6 +178,7 @@ namespace FYP_Management_System
                     MessageBox.Show("Record Added Successfully");
                     LoadStudentData();
                 }
+                
             }
         }
         private bool ContainsNumber(string input)

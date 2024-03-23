@@ -30,3 +30,4 @@ C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.csproj.CoreCompileInputs.cache
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.exe
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.pdb
+C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.GroupStudentCRUD.resources

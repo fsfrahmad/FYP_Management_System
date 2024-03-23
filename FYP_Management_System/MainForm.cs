@@ -54,5 +54,11 @@ namespace FYP_Management_System
                 }
             }
         }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            GroupStudentCRUD groupStudentCRUD = new GroupStudentCRUD();
+            groupStudentCRUD.Show();
+            this.Hide();
+        }
     }
 }
