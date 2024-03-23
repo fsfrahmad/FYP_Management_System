@@ -100,7 +100,7 @@ namespace FYP_Management_System
                 var con = Configuration.getInstance().getConnection();
                 
                 // Check if the Person already exists and is not a advisor
-                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Person WHERE Contact = @Contact AND Email = @Email", con);
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Person WHERE Contact = @Contact OR Email = @Email", con);
                 cmd.Parameters.AddWithValue("@Contact", txtContact.Text);
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                 int exisngPersonCount = (int)cmd.ExecuteScalar();
@@ -114,7 +114,7 @@ namespace FYP_Management_System
                     return;
                 }
                 //Get Person Id if Record Already Exists and check based on that is not a Advisor
-                SqlCommand cmd2 = new SqlCommand("SELECT Id FROM Person WHERE Contact = @Contact AND Email = @Email", con);
+                SqlCommand cmd2 = new SqlCommand("SELECT Id FROM Person WHERE Contact = @Contact OR Email = @Email", con);
                 cmd2.Parameters.AddWithValue("@Contact", txtContact.Text);
                 cmd2.Parameters.AddWithValue("@Email", txtEmail.Text);
                 object result = cmd2.ExecuteScalar();
@@ -163,11 +163,22 @@ namespace FYP_Management_System
 
                     cmd6.ExecuteNonQuery();
 
-                    SqlCommand cmd7 = new SqlCommand("SELECT Id FROM Person WHERE Contact = @Contact AND Email = @Email", con);
+                    SqlCommand cmd7 = new SqlCommand("SELECT Id FROM Person WHERE Contact = @Contact OR Email = @Email", con);
                     cmd7.Parameters.AddWithValue("@Contact", txtContact.Text);
                     cmd7.Parameters.AddWithValue("@Email", txtEmail.Text);
                     object result2 = cmd7.ExecuteScalar();
                     int personId2 = result2 != null ? (int)result2 : -1; // Replace -1 with appropriate default value
+
+                    //if record is already in Student Table
+                    SqlCommand cmd12 = new SqlCommand("SELECT COUNT(*) FROM Student WHERE Id = @Id", con);
+                    cmd12.Parameters.AddWithValue("@Id", personId2);
+                    int existingStudentCount3 = (int)cmd12.ExecuteScalar();
+                    if (existingStudentCount3 == 1)
+                    {
+                        MessageBox.Show("Student already exists");
+                        return;
+                    }
+
 
                     // Check if Student with same Registration No already exists
 
@@ -246,7 +257,7 @@ namespace FYP_Management_System
                 var con = Configuration.getInstance().getConnection();
                 // Check if the updated data does not already exists in person table
 
-                SqlCommand cmd10 = new SqlCommand("SELECT COUNT(*) FROM Person WHERE Contact = @Contact AND Email = @Email AND Id != @Id", con);
+                SqlCommand cmd10 = new SqlCommand("SELECT COUNT(*) FROM Person WHERE Contact = @Contact OR Email = @Email AND Id != @Id", con);
                 cmd10.Parameters.AddWithValue("@Contact", txtContact.Text);
                 cmd10.Parameters.AddWithValue("@Email", txtEmail.Text);
                 cmd10.Parameters.AddWithValue("@Id", txtId.Text);
@@ -297,6 +308,7 @@ namespace FYP_Management_System
             {
                 var con = Configuration.getInstance().getConnection();
                 SqlCommand cmd = new SqlCommand("DELETE FROM Student WHERE Id = @Id", con);
+                DeleteFromGroup();
                 cmd.Parameters.AddWithValue("@Id", txtId.Text);
                 cmd.ExecuteNonQuery();
                 LoadStudentData();
@@ -304,7 +316,15 @@ namespace FYP_Management_System
                 ClearData();
             }
         }
+        private void DeleteFromGroup()
+        {
+            // if student is in any group delete it from there
+            var con = Configuration.getInstance().getConnection();
+            SqlCommand cmd = new SqlCommand("DELETE FROM GroupStudent WHERE StudentId = @StudentId", con);
+            cmd.Parameters.AddWithValue("@StudentId", txtId.Text);
+            cmd.ExecuteNonQuery();
 
+        }
         private void SearchButton_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem == null)

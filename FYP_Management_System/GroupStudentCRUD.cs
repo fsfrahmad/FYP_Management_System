@@ -44,6 +44,9 @@ namespace FYP_Management_System
             DataTable dt = new DataTable();
             sda.Fill(dt);
             dataGridView1.DataSource = dt;
+
+            // Set width of column of data grid view 
+            dataGridView1.Columns[3].Width = 250;
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -210,6 +213,187 @@ namespace FYP_Management_System
                 MessageBox.Show("Student Added to Group");
                 LoadGroupStudentData();
             }
+        }
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            if(cbxSId.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a student");
+                return;
+            }
+            if(cbxGroup.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a group");
+                return;
+            }
+            var con = Configuration.getInstance().getConnection();
+
+            //Check if the student is not in any Group
+            SqlCommand cmd_1 = new SqlCommand("Select COUNT(*) FROM GroupStudent WHERE StudentId = @StudentId", con);
+            cmd_1.Parameters.AddWithValue("@StudentId", cbxSId.SelectedValue);
+            int count_1 = (int)cmd_1.ExecuteScalar();
+            if (count_1 == 0)
+            {
+                MessageBox.Show("Student is not in any Group");
+                return;
+            }
+
+            // Check that the new Group has less than 4 students
+            SqlCommand cmd = new SqlCommand("Select COUNT(*) FROM GroupStudent WHERE GroupId = @GroupId", con);
+            cmd.Parameters.AddWithValue("@GroupId", cbxGroup.SelectedValue);
+            cmd.ExecuteNonQuery();
+            int count = (int)cmd.ExecuteScalar();
+            if (count == 4)
+            {
+                MessageBox.Show("Group has already 4 students");
+                return;
+            }
+
+            // Get the GroupInfo of Student from the Group add into the new Group and Remove it from previous Group
+            SqlCommand cmd2 = new SqlCommand("Select * FROM GroupStudent WHERE StudentId = @StudentId", con);
+            cmd2.Parameters.AddWithValue("@StudentId", cbxSId.SelectedValue);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd2);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            int GroupId = 0;
+            int Status = 0;
+            DateTime AssignmentDate = DateTime.Now;
+            foreach (DataRow row in dt.Rows)
+            {
+                GroupId = (int)row["GroupId"];
+                Status = (int)row["Status"];
+                AssignmentDate = (DateTime)row["AssignmentDate"];
+            }
+            // Check if the group is same
+            SqlCommand cmd1 = new SqlCommand("Select COUNT(*) FROM GroupStudent WHERE GroupId = @GroupId AND StudentId = @StudentId", con);
+            cmd1.Parameters.AddWithValue("@GroupId", cbxGroup.SelectedValue);
+            cmd1.Parameters.AddWithValue("@StudentId", cbxSId.SelectedValue);
+            int count1 = (int)cmd1.ExecuteScalar();
+            if (count1 > 0)
+            {
+                MessageBox.Show("Student is already in Group");
+                return;
+            }
+            // Check if the student is already in any other group
+            SqlCommand cmd5 = new SqlCommand("Select COUNT(*) FROM GroupStudent WHERE StudentId = @StudentId", con);
+            cmd5.Parameters.AddWithValue("@StudentId", cbxSId.SelectedValue);
+            int count5 = (int)cmd5.ExecuteScalar();
+            if (count5 > 1)
+            {
+                MessageBox.Show("Student is already in another Group");
+                return;
+            }
+
+            // Add Student into New Group
+            SqlCommand cmd3 = new SqlCommand("INSERT INTO GroupStudent (GroupId, StudentId, Status, AssignmentDate) VALUES (@GroupId, @StudentId, @Status, @AssignmentDate)", con);
+            cmd3.Parameters.AddWithValue("@GroupId", cbxGroup.SelectedValue);
+            cmd3.Parameters.AddWithValue("@StudentId", cbxSId.SelectedValue);
+            cmd3.Parameters.AddWithValue("@Status", Status);
+            cmd3.Parameters.AddWithValue("@AssignmentDate", AssignmentDate);
+            cmd3.ExecuteNonQuery();
+            // Remove Student from Previous Group
+            SqlCommand cmd4 = new SqlCommand("DELETE FROM GroupStudent WHERE GroupId = @GroupId AND StudentId = @StudentId", con);
+            cmd4.Parameters.AddWithValue("@GroupId", GroupId);
+            cmd4.Parameters.AddWithValue("@StudentId", cbxSId.SelectedValue);
+            cmd4.ExecuteNonQuery();
+            MessageBox.Show("Student Updated");
+            LoadGroupStudentData();
+        }
+
+        private void DeleteStudentButton_Click(object sender, EventArgs e)
+        {
+            if (cbxSId.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a student");
+                return;
+            }
+            var con = Configuration.getInstance().getConnection();
+            //Check if the student is not in any Group
+            SqlCommand cmd_1 = new SqlCommand("Select COUNT(*) FROM GroupStudent WHERE StudentId = @StudentId", con);
+            cmd_1.Parameters.AddWithValue("@StudentId", cbxSId.SelectedValue);
+            int count_1 = (int)cmd_1.ExecuteScalar();
+            if(count_1 == 0)
+            {
+                MessageBox.Show("Student is not in any Group");
+                return;
+            }
+            // Remove Student from Group
+            SqlCommand cmd = new SqlCommand("DELETE FROM GroupStudent WHERE StudentId = @StudentId", con);
+            cmd.Parameters.AddWithValue("@StudentId", cbxSId.SelectedValue);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("Student Deleted");
+            LoadGroupStudentData();
+
+        }
+
+        private void DeleteGroupButton_Click(object sender, EventArgs e)
+        {
+            if (cbxGroup.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a Group");
+                return;
+            }
+            var con = Configuration.getInstance().getConnection();
+
+            //Check if the Group has no students
+            SqlCommand cmd_1 = new SqlCommand("Select COUNT(*) FROM GroupStudent WHERE GroupId = @GroupId", con);
+            cmd_1.Parameters.AddWithValue("@GroupId", cbxGroup.SelectedValue);
+            int count_1 = (int)cmd_1.ExecuteScalar();
+            if (count_1 == 0)
+            {
+                MessageBox.Show("Group has no students");
+                return;
+            }
+            // Remove Group
+            SqlCommand cmd = new SqlCommand("DELETE FROM GroupStudent WHERE GroupId = @GroupId", con);
+            cmd.Parameters.AddWithValue("@GroupId", cbxGroup.SelectedValue);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("Group Deleted");
+            LoadGroupStudentData();
+
+        }
+
+        private void UpdateStudentStatusButton_Click(object sender, EventArgs e)
+        {
+            if (cbxSId.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a student");
+                return;
+            }
+            // if student is not in group
+            var con = Configuration.getInstance().getConnection();
+            SqlCommand cmd_1 = new SqlCommand("Select COUNT(*) FROM GroupStudent WHERE StudentId = @StudentId", con);
+            cmd_1.Parameters.AddWithValue("@StudentId", cbxSId.SelectedValue);
+            int count_1 = (int)cmd_1.ExecuteScalar();
+            if (count_1 == 0)
+            {
+                MessageBox.Show("Student is not in any Group");
+                return;
+            }
+
+
+            // if status is Active then change it to Inactive and vice versa
+            SqlCommand cmd = new SqlCommand("Select Status FROM GroupStudent WHERE StudentId = @StudentId", con);
+            cmd.Parameters.AddWithValue("@StudentId", cbxSId.SelectedValue);
+            int Status = (int)cmd.ExecuteScalar();
+            if (Status == 3)
+            {
+                SqlCommand cmd1 = new SqlCommand("UPDATE GroupStudent SET Status = 4 WHERE StudentId = @StudentId", con);
+                cmd1.Parameters.AddWithValue("@StudentId", cbxSId.SelectedValue);
+                cmd1.ExecuteNonQuery();
+                MessageBox.Show("Student Status Updated");
+                LoadGroupStudentData();
+            }
+            else if (Status == 4)
+            {
+                SqlCommand cmd1 = new SqlCommand("UPDATE GroupStudent SET Status = 3 WHERE StudentId = @StudentId", con);
+                cmd1.Parameters.AddWithValue("@StudentId", cbxSId.SelectedValue);
+                cmd1.ExecuteNonQuery();
+                MessageBox.Show("Student Status Updated");
+                LoadGroupStudentData();
+            }
+
         }
     }
 }
