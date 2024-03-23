@@ -25,9 +25,9 @@ C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.ProjectCRUD.resources
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.Properties.Resources.resources
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.StudentCRUD.resources
-C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.StudentForm.resources
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.csproj.GenerateResource.cache
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.csproj.CoreCompileInputs.cache
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.exe
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.pdb
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.GroupStudentCRUD.resources
+C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.ProjectAdvisorCRUD.resources

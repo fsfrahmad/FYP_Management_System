@@ -77,6 +77,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectAdvisorCRUD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjectAdvisorCRUD.Designer.cs">
+      <DependentUpon>ProjectAdvisorCRUD.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,12 +95,6 @@
     </Compile>
     <Compile Include="StudentCRUD.Designer.cs">
       <DependentUpon>StudentCRUD.cs</DependentUpon>
-    </Compile>
-    <Compile Include="StudentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StudentForm.Designer.cs">
-      <DependentUpon>StudentForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AdvisorCRUD.resx">
       <DependentUpon>AdvisorCRUD.cs</DependentUpon>
@@ -110,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectAdvisorCRUD.resx">
+      <DependentUpon>ProjectAdvisorCRUD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectCRUD.resx">
       <DependentUpon>ProjectCRUD.cs</DependentUpon>
@@ -127,9 +130,6 @@
     </Compile>
     <EmbeddedResource Include="StudentCRUD.resx">
       <DependentUpon>StudentCRUD.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StudentForm.resx">
-      <DependentUpon>StudentForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

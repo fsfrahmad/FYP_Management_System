@@ -50,7 +50,6 @@ namespace FYP_Management_System
                 else
                 {
                     closingConfirmed = true;
-                    Application.Exit();
                 }
             }
         }
@@ -58,6 +57,30 @@ namespace FYP_Management_System
         {
             GroupStudentCRUD groupStudentCRUD = new GroupStudentCRUD();
             groupStudentCRUD.Show();
+            this.Hide();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ProjectCRUD projectCRUD = new ProjectCRUD();
+            projectCRUD.Show();
+            this.Hide();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ProjectAdvisorCRUD projectAdvisorCRUD = new ProjectAdvisorCRUD();
+            projectAdvisorCRUD.Show();
             this.Hide();
         }
     }
