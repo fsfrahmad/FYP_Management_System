@@ -121,5 +121,69 @@ namespace FYP_Management_System
                 MessageBox.Show("Please Select Group and Project");
             }
         }
+
+        private void UnassignGroupProjectButton_Click(object sender, EventArgs e)
+        {
+            if (cbxGroup.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please Select Group");
+                return;
+            }
+            var con = Configuration.getInstance().getConnection();
+            // Unassign the project from the group
+            SqlCommand cmd = new SqlCommand("Delete FROM GroupProject WHERE GroupId = @GroupId", con);
+            cmd.Parameters.AddWithValue("@GroupId", cbxGroup.SelectedValue);
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("Project Unassigned from Group");
+            LoadData();
+        }
+
+        private void UpdateGroupProjectButton_Click(object sender, EventArgs e)
+        {
+            if(cbxGroup.SelectedIndex != -1 && cbxProject.SelectedIndex != -1)
+            {
+                var con = Configuration.getInstance().getConnection();
+                //make sure this group is assigned a project
+                SqlCommand cmd_1 = new SqlCommand("Select COUNT(*) FROM GroupProject WHERE GroupId = @GroupId", con);
+                cmd_1.Parameters.AddWithValue("@GroupId", cbxGroup.SelectedValue);
+                int count_1 = (int)cmd_1.ExecuteScalar();
+                if (count_1 == 0)
+                {
+                    MessageBox.Show("Group is not assigned any project");
+                    return;
+                }
+                // make sure the group is not already assigned the project
+                SqlCommand cmd = new SqlCommand("Select COUNT(*) FROM GroupProject WHERE GroupId = @GroupId AND ProjectId = @ProjectId", con);
+                cmd.Parameters.AddWithValue("@GroupId", cbxGroup.SelectedValue);
+                cmd.Parameters.AddWithValue("@ProjectId", cbxProject.SelectedValue);
+                int count = (int)cmd.ExecuteScalar();
+                if (count > 0)
+                {
+                    MessageBox.Show("Group is already assigned this project");
+                    return;
+                }
+                // check if the project is already assigned to amother group
+                cmd = new SqlCommand("Select COUNT(*) FROM GroupProject WHERE ProjectId = @ProjectId", con);
+                cmd.Parameters.AddWithValue("@ProjectId", cbxProject.SelectedValue);
+                count = (int)cmd.ExecuteScalar();
+                if (count > 0)
+                {
+                    MessageBox.Show("Project is already assigned to another group");
+                    return;
+                }
+                // Assign the project to the group
+                cmd = new SqlCommand("Update GroupProject SET ProjectId = @ProjectId, AssignmentDate = @AssignmentDate WHERE GroupId = @GroupId", con);
+                cmd.Parameters.AddWithValue("@GroupId", cbxGroup.SelectedValue);
+                cmd.Parameters.AddWithValue("@ProjectId", cbxProject.SelectedValue);
+                cmd.Parameters.AddWithValue("@AssignmentDate", DateTime.Now);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Project Updated for Group");
+                LoadData();
+            }
+            else
+            {
+                MessageBox.Show("Please Select Group and Project");
+            }
+        }
     }
 }
