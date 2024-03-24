@@ -32,3 +32,8 @@ C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.GroupStudentCRUD.resources
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.ProjectAdvisorCRUD.resources
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.Group_Project.resources
+C:\Users\PMLS\Desktop\Mid\FYP_Management_System\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\PMLS\Desktop\Mid\FYP_Management_System\bin\Debug\itextsharp.dll
+C:\Users\PMLS\Desktop\Mid\FYP_Management_System\bin\Debug\itextsharp.xml
+C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.csproj.CopyComplete
+C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.Form2.resources

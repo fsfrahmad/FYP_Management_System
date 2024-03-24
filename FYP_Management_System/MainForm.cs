@@ -90,5 +90,12 @@ namespace FYP_Management_System
             group_Project.Show();
             this.Hide();
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            EvaluationCRUD evaluationCRUD = new EvaluationCRUD();
+            evaluationCRUD.Show();
+            this.Hide();
+        }
     }
 }

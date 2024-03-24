@@ -223,5 +223,12 @@ namespace FYP_Management_System
                     return string.Empty;
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            mainForm.Show();
+            this.Close();
+        }
     }
 }
