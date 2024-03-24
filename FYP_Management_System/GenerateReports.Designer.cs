@@ -32,10 +32,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.cbxNo = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,16 +87,15 @@
             this.panel1.Size = new System.Drawing.Size(1491, 733);
             this.panel1.TabIndex = 1;
             // 
-            // button1
+            // label2
             // 
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(117, 561);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 36);
-            this.button1.TabIndex = 44;
-            this.button1.Text = "<< BACK";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(247, 160);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(737, 31);
+            this.label2.TabIndex = 53;
+            this.label2.Text = "Generate Reports from the Final Year Project Management System";
             // 
             // cbxNo
             // 
@@ -121,15 +120,16 @@
             this.label13.TabIndex = 51;
             this.label13.Text = "Select Report";
             // 
-            // label2
+            // button1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(247, 160);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(737, 31);
-            this.label2.TabIndex = 53;
-            this.label2.Text = "Generate Reports from the Final Year Project Management System";
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 11.8209F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(117, 561);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(122, 36);
+            this.button1.TabIndex = 44;
+            this.button1.Text = "<< BACK";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // GenerateReports
             // 
@@ -139,6 +139,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "GenerateReports";
             this.Text = "GenerateReports";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

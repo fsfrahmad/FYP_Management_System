@@ -37,3 +37,4 @@ C:\Users\PMLS\Desktop\Mid\FYP_Management_System\bin\Debug\itextsharp.dll
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\bin\Debug\itextsharp.xml
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.csproj.CopyComplete
 C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.GenerateReports.resources
+C:\Users\PMLS\Desktop\Mid\FYP_Management_System\obj\Debug\FYP_Management_System.GroupEvaluation.resources

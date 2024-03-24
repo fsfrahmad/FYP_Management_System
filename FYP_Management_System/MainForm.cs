@@ -99,5 +99,13 @@ namespace FYP_Management_System
             evaluationCRUD.Show();
             this.Hide();
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            GroupEvaluation groupEvaluation = new GroupEvaluation();
+            groupEvaluation.Show();
+            this.Hide();
+
+        }
     }
 }
