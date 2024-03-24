@@ -48,7 +48,7 @@ namespace FYP_Management_System
             {
                 MessageBox.Show("Please fill all the fields");
             }
-            else if(ContainsAlphabet(txtTM.Text) == true || ContainsAlphabet(txtTM.Text) == true)
+            else if (ContainsAlphabet(txtTM.Text) == true || ContainsAlphabet(txtTM.Text) == true)
             {
                 MessageBox.Show("Please enter valid values for Total Marks and Total Weightage");
             }
@@ -65,6 +65,21 @@ namespace FYP_Management_System
                 }
                 else
                 {
+                    //make sure that the overall weightage is not greater than 100
+                    SqlCommand cmd2 = new SqlCommand("Select SUM(TotalWeightage) from Evaluation", con);
+                    object result = cmd2.ExecuteScalar();
+                    int totalWeightage = result == DBNull.Value ? 0 : Convert.ToInt32(result);
+                    if (totalWeightage + Convert.ToInt32(txtTW.Text) > 100)
+                    {
+                        MessageBox.Show("Total Weightage cannot be greater than 100");
+                        return;
+                    }
+                    //make sure the total marks of new evaluation are not greater than the 500
+                    if(int.Parse(txtTM.Text) > 500)
+                    {
+                        MessageBox.Show("Total Marks cannot be greater than 500");
+                        return;
+                    }
                     SqlCommand sqlCommand = new SqlCommand("Insert into Evaluation(Name, TotalMarks, TotalWeightage) values(@Name, @TotalMarks, @TotalWeightage)", con);
                     sqlCommand.Parameters.AddWithValue("@Name", txtName.Text);
                     sqlCommand.Parameters.AddWithValue("@TotalMarks", txtTM.Text);
@@ -124,6 +139,16 @@ namespace FYP_Management_System
                 }
                 else
                 {
+                    //make sure that the overall weightage - previous weightage is not greater than 100
+                    SqlCommand cmd2 = new SqlCommand("Select SUM(TotalWeightage) from Evaluation where Id != @Id", con);
+                    cmd2.Parameters.AddWithValue("@Id", txtId.Text);
+                    object result = cmd2.ExecuteScalar();
+                    int totalWeightage = result == DBNull.Value ? 0 : Convert.ToInt32(result);
+                    if (totalWeightage + Convert.ToInt32(txtTW.Text) > 100)
+                    {
+                        MessageBox.Show("Total Weightage cannot be greater than 100");
+                        return;
+                    }
                     SqlCommand sqlCommand = new SqlCommand("Update Evaluation set Name = @Name, TotalMarks = @TotalMarks, TotalWeightage = @TotalWeightage where Id = @Id", con);
                     sqlCommand.Parameters.AddWithValue("@Name", txtName.Text);
                     sqlCommand.Parameters.AddWithValue("@TotalMarks", txtTM.Text);
@@ -229,6 +254,18 @@ namespace FYP_Management_System
             MainForm mainForm = new MainForm();
             mainForm.Show();
             this.Close();
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+                txtId.Text = row.Cells[0].Value.ToString();
+                txtName.Text = row.Cells[1].Value.ToString();
+                txtTM.Text = row.Cells[2].Value.ToString();
+                txtTW.Text = row.Cells[3].Value.ToString();
+            }
         }
     }
 }
