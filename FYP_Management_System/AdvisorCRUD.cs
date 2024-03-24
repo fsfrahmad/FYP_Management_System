@@ -57,6 +57,16 @@ namespace FYP_Management_System
             else
             {
                 var con = Configuration.getInstance().getConnection();
+                //Delete From Project Advisor table if record exists there
+                SqlCommand checkProjectAdvisor = new SqlCommand("SELECT COUNT(*) FROM ProjectAdvisor WHERE AdvisorId = @AdvisorId", con);
+                checkProjectAdvisor.Parameters.AddWithValue("@AdvisorId", txtId.Text);
+                int projectAdvisorCount = (int)checkProjectAdvisor.ExecuteScalar();
+                if (projectAdvisorCount > 0)
+                {
+                    SqlCommand deleteProjectAdvisor = new SqlCommand("DELETE FROM ProjectAdvisor WHERE AdvisorId = @AdvisorId", con);
+                    deleteProjectAdvisor.Parameters.AddWithValue("@AdvisorId", txtId.Text);
+                    deleteProjectAdvisor.ExecuteNonQuery();
+                }
                 SqlCommand cmd = new SqlCommand("DELETE FROM Advisor WHERE Id = @Id", con);
                 cmd.Parameters.AddWithValue("@Id", txtId.Text);
                 cmd.ExecuteNonQuery();

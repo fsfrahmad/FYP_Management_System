@@ -83,5 +83,12 @@ namespace FYP_Management_System
             projectAdvisorCRUD.Show();
             this.Hide();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Group_Project group_Project = new Group_Project();
+            group_Project.Show();
+            this.Hide();
+        }
     }
 }

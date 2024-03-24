@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +62,56 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1924, 1052);
             this.panel1.TabIndex = 0;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button9.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.Location = new System.Drawing.Point(770, 479);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(116, 60);
+            this.button9.TabIndex = 10;
+            this.button9.Text = "Group Evaluation";
+            this.button9.UseVisualStyleBackColor = false;
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button8.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.Location = new System.Drawing.Point(498, 475);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(131, 60);
+            this.button8.TabIndex = 9;
+            this.button8.Text = "Manage Evaluations";
+            this.button8.UseVisualStyleBackColor = false;
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button7.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Location = new System.Drawing.Point(786, 335);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(100, 60);
+            this.button7.TabIndex = 8;
+            this.button7.Text = "Group Projects";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button6.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(513, 335);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(100, 60);
+            this.button6.TabIndex = 7;
+            this.button6.Text = "Project Advisor";
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
@@ -137,55 +187,6 @@
             this.label1.Size = new System.Drawing.Size(986, 59);
             this.label1.TabIndex = 2;
             this.label1.Text = "Final Year Project Management System";
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button6.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(513, 335);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 60);
-            this.button6.TabIndex = 7;
-            this.button6.Text = "Project Advisor";
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button7.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(786, 335);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(100, 60);
-            this.button7.TabIndex = 8;
-            this.button7.Text = "Group Projects";
-            this.button7.UseVisualStyleBackColor = false;
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button8.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(498, 475);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(131, 60);
-            this.button8.TabIndex = 9;
-            this.button8.Text = "Manage Evaluations";
-            this.button8.UseVisualStyleBackColor = false;
-            // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button9.Font = new System.Drawing.Font("Times New Roman", 13.97015F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(770, 479);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(116, 60);
-            this.button9.TabIndex = 10;
-            this.button9.Text = "Group Evaluation";
-            this.button9.UseVisualStyleBackColor = false;
             // 
             // panel2
             // 

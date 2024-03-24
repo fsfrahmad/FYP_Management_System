@@ -303,5 +303,30 @@ namespace FYP_Management_System
             LoadProjectAdvisorData();
         }
 
+        private void DeleteProjectAdvisorButton_Click(object sender, EventArgs e)
+        {
+            if(cbxAId.Items.Count == 0 || cbxProject.Items.Count == 0)
+            {
+                MessageBox.Show("Please fill all the fields");
+                return;
+            }
+            var con = Configuration.getInstance().getConnection();
+            // Check if the project advisor exists
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM ProjectAdvisor WHERE AdvisorId = @AdvisorId", con);
+            cmd.Parameters.AddWithValue("@AdvisorId", cbxAId.Text);
+            cmd.Parameters.AddWithValue("@ProjectId", cbxProject.Text);
+            int count = (int)cmd.ExecuteScalar();
+            if (count == 0)
+            {
+                MessageBox.Show("Project Advisor does not exist");
+                return;
+            }
+            // Delete the project advisor
+            SqlCommand cmd2 = new SqlCommand("DELETE FROM ProjectAdvisor WHERE AdvisorId = @AdvisorId", con);
+            cmd2.Parameters.AddWithValue("@AdvisorId", cbxAId.Text);
+            cmd2.ExecuteNonQuery();
+            MessageBox.Show("Project Advisor Deleted Successfully");
+            LoadProjectAdvisorData();
+        }
     }
 }
