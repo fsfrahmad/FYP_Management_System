@@ -19,7 +19,9 @@ namespace FYP_Management_System
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            GenerateReports generateReports = new GenerateReports();
+            generateReports.Show();
+            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
