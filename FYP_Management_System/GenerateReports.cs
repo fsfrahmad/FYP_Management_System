@@ -96,6 +96,22 @@ namespace FYP_Management_System
 
                     MessageBox.Show("PDF report generated successfully! You can find it on your Desktop.");
                 }
+                else if(cbxNo.SelectedIndex == 1)
+                {
+                    string query = "SELECT P.Title AS ProjectTitle, CONCAT(StuP.FirstName, ' ', StuP.LastName) AS StudentName, E.Name AS EvaluationName, ISNULL(CAST(GE.ObtainedMarks AS VARCHAR), 'Not Evaluated') AS ObtainedMarks FROM [Project] AS P INNER JOIN [GroupProject] AS GP ON P.Id = GP.ProjectId INNER JOIN [GroupStudent] AS GS ON GP.GroupId = GS.GroupId INNER JOIN [Student] AS S ON GS.StudentId = S.Id LEFT JOIN [Person] AS StuP ON S.Id = StuP.Id LEFT JOIN [GroupEvaluation] AS GE ON GP.GroupId = GE.GroupId LEFT JOIN [Evaluation] AS E ON GE.EvaluationId = E.Id ORDER BY P.Title, StuP.FirstName, StuP.LastName, E.Name;";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    // Generate PDF report
+                    ExportToPDF(dt, "Evaluation of Projects", "Marks sheet of projects that shows the marks in each evaluation against each student and project \n ...");
+
+                    MessageBox.Show("PDF report generated successfully! You can find it on your Desktop.");
+                }
+                else
+                {
+                    MessageBox.Show("Please select a report to generate.");
+                }
                 
             }
             catch (Exception ex)
